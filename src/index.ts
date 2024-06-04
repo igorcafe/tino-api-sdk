@@ -1,6 +1,6 @@
 import axios, { Axios } from "axios"
 
-class TinoClient {
+export class TinoClient {
     apiKey: string
     http: Axios
 
