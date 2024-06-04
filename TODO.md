@@ -1,7 +1,7 @@
 ## Endpoints
-- [ ] GET invoice
+- [X] GET invoice
 - [ ] PATCH invoice
-- [ ] DELETE invoice
+- [X] DELETE invoice
 - [ ] GET reservation/{id}
 - [ ] POST reservation/bill
 - [ ] POST reservation/partial-bill
