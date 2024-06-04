@@ -1,5 +1,5 @@
 ## Endpoints
-- [ ] GET invoice
+- [X] GET invoice
 - [ ] PATCH invoice
 - [ ] DELETE invoice
 - [ ] GET reservation/{id}
