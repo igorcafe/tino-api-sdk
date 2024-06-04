@@ -14,40 +14,45 @@ export class TinoClient {
         })
     }
 
-    async billLimitReservation(request: BillLimitReservationRequest): Promise<BillLimitReservationResponse> {
-        const resp = await this.http.post<BillLimitReservationResponse>("/v2/limit-reservations/{limit_reservation_id}/bill")
-        return resp.data
+    async getInvoices(request: GetInvoicesRequest): Promise<GetInvoicesResponse> {
+        const { data } = await this.http.get<GetInvoicesResponse>(
+            `/v2/invoices?external_id=${request.externalInvoiceId}`,
+        )
+        return data
     }
 
-    // TODO tratar erro
-    async createPaymentLink(request: CreatePaymentLinkRequest): Promise<CreatePaymentLinkResponse> {
-        const resp = await this.http.post<CreatePaymentLinkResponse>("/v1/payment-links", request)
-        return resp.data
+    async editInvoice(request: EditInvoiceRequest): Promise<void> {
+        await this.http.patch(`/v1/invoices/${request.externalInvoiceId}`, {
+            amountCents: request.amountCents
+        })
     }
-}
-type BillLimitReservationRequest = {
-}
 
-type BillLimitReservationResponse = {
-    invoices: []
-}
-
-type CreatePaymentLinkRequest = {
-    merchant_document_number: string
-    email: string
-    external_id: string
-    amount_cents: number
-    contact: {
-        phone: string
-        channel: string
-    },
-    cart: {
-        address: string
-        zip_code: string
-        items: any[]
+    async cancelInvoice(request: CancelInvoiceRequest): Promise<void> {
+        await this.http.delete(`/v1/invoices/${request.externalInvoiceId}`)
     }
 }
 
-type CreatePaymentLinkResponse = {
-    purchaseIntentionLink: string
+type GetInvoicesRequest = {
+    externalInvoiceId: string
 }
+
+type GetInvoicesResponse = {
+    invoices: Invoice[]
+}
+
+type EditInvoiceRequest = {
+    externalInvoiceId: string
+    amountCents: number
+}
+
+type CancelInvoiceRequest = {
+    externalInvoiceId: string
+}
+
+type Invoice = {
+    externalId: string;
+    amountCents: number;
+    originalAmountCents: number;
+    status: string;
+}
+

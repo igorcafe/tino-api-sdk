@@ -1,25 +1,13 @@
-import { TinoClient } from './src/index'
+import { TinoClient } from "./src/index"
 
 async function main() {
-  const tino = new TinoClient("API_KEY")
+  const tino = new TinoClient("AIzaSyDlTnbL9-z5MgUQpTi-p1Ibsb0K-vvWGbU")
 
-  const data = await tino.createPaymentLink({
-    merchant_document_number: "DOCUMENT_NUMBER",
-    email: "EMAIL",
-    external_id: "external_id",
-    amount_cents: 1000,
-    contact: {
-      phone: "5511999999999",
-      channel: "whatsapp"
-    },
-    cart: {
-      address: "Endereço",
-      zip_code: "11111111",
-      items: [{}]
-    },
+  const resp = await tino.getInvoices({
+    externalId: "123"
   })
 
-  console.log(data.purchaseIntentionLink)
+  console.log(resp)
 }
 
 main()
