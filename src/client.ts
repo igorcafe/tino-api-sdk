@@ -21,6 +21,10 @@ export class TinoClient {
         )
         return data
     }
+
+    async cancelInvoice(request: CancelInvoiceRequest): Promise<void> {
+        await this.http.delete(`/v1/invoices/${request.externalId}`)
+    }
 }
 
 type GetInvoicesRequest = {
@@ -29,6 +33,10 @@ type GetInvoicesRequest = {
 
 type GetInvoicesResponse = {
     invoices: Invoice[]
+}
+
+type CancelInvoiceRequest = {
+    externalId: string
 }
 
 type Invoice = {
