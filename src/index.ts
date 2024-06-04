@@ -1,11 +1,9 @@
-import axios, { Axios } from "axios"
+import axios, { AxiosInstance } from "axios"
 
 export class TinoClient {
-    apiKey: string
-    http: Axios
+    private http: AxiosInstance
 
     constructor(apiKey: string) {
-        this.apiKey = apiKey
         this.http = axios.create({
             baseURL: "https://stg.supplier-api.truepay.com.br",
             headers: {
