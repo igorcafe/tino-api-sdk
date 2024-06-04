@@ -14,7 +14,7 @@ export class TinoClient {
 
     async getInvoices(request: GetInvoicesRequest): Promise<GetInvoicesResponse> {
         const { data } = await this.http.get<GetInvoicesResponse>(
-            `/v2/invoices?external_id=${request.externalInvoiceId}`,
+            `/v2/invoices?externalId=${request.externalInvoiceId}`,
         )
         return data
     }
