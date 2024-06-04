@@ -1,5 +1,5 @@
 {
-  "name": "tino-api-sdk",
+  "name": "@hackatino/tino-sdk",
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
