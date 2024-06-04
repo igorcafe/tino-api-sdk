@@ -17,26 +17,37 @@ export class TinoClient {
 
     async getInvoices(request: GetInvoicesRequest): Promise<GetInvoicesResponse> {
         const { data } = await this.http.get<GetInvoicesResponse>(
-            `/v2/invoices?external_id=${request.externalId}`,
+            `/v2/invoices?external_id=${request.externalInvoiceId}`,
         )
         return data
     }
 
+    async editInvoice(request: EditInvoiceRequest): Promise<void> {
+        await this.http.patch(`/v1/invoices/${request.externalInvoiceId}`, {
+            amountCents: request.amountCents
+        })
+    }
+
     async cancelInvoice(request: CancelInvoiceRequest): Promise<void> {
-        await this.http.delete(`/v1/invoices/${request.externalId}`)
+        await this.http.delete(`/v1/invoices/${request.externalInvoiceId}`)
     }
 }
 
 type GetInvoicesRequest = {
-    externalId: string
+    externalInvoiceId: string
 }
 
 type GetInvoicesResponse = {
     invoices: Invoice[]
 }
 
+type EditInvoiceRequest = {
+    externalInvoiceId: string
+    amountCents: number
+}
+
 type CancelInvoiceRequest = {
-    externalId: string
+    externalInvoiceId: string
 }
 
 type Invoice = {

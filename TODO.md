@@ -1,6 +1,6 @@
 ## Endpoints
 - [X] GET invoice
-- [ ] PATCH invoice
+- [X] PATCH invoice
 - [X] DELETE invoice
 - [ ] GET reservation/{id}
 - [ ] POST reservation/bill
