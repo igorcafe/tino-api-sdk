@@ -4,7 +4,6 @@ class TinoClient {
     apiKey: string
     http: Axios
 
-    // TODO: env stg/prd
     constructor(apiKey: string) {
         this.apiKey = apiKey
         this.http = axios.create({
@@ -28,7 +27,7 @@ type BillLimitReservationResponse = {
 }
 
 async function main() {
-    const tino = new TinoClient("AIzaSyDlTnbL9-z5MgUQpTi-p1Ibsb0K-vvWGbU")
+    const tino = new TinoClient("")
     const { invoices } = await tino.billLimitReservation({})
 }
 
