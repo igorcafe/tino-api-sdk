@@ -56,70 +56,70 @@ export class TinoClient {
     }
 }
 
-type GetInvoicesRequest = {
+export type GetInvoicesRequest = {
     externalInvoiceId: string
 }
 
-type GetInvoicesResponse = {
+export type GetInvoicesResponse = {
     invoices: Invoice[]
 }
 
-type EditInvoiceRequest = {
+export type EditInvoiceRequest = {
     externalInvoiceId: string
     amountCents: number
 }
 
-type CancelInvoiceRequest = {
+export type CancelInvoiceRequest = {
     externalInvoiceId: string
 }
 
-type CancelReservationRequest = {
+export type CancelReservationRequest = {
     reservationId: string
 }
 
-type PartialBillReservationRequest = {
+export type PartialBillReservationRequest = {
     reservationId: string
     lastBatch: boolean
     nfes: Nfe[]
 }
 
 
-type PartialBillReservationResponse = {
+export type PartialBillReservationResponse = {
     invoices: Invoice[]
 }
 
-type BillReservationRequest = {
+export type BillReservationRequest = {
     reservationId: string
     nfes: Nfe[]
 }
 
-type BillReservationResponse = {
+export type BillReservationResponse = {
     invoices: Invoice[]
 }
 
-type GetReservationRequest = {
+export type GetReservationRequest = {
     externalId: string
 }
 
-type GetReservationResponse = {
+export type GetReservationResponse = {
     reservation: Reservation
 }
 
-type Reservation = {
+export type Reservation = {
     id: string
     amountCents: number
     externalId: string
     merchantDocumentNumber: string
 }
 
-type Nfe = {
+export type Nfe = {
     data: string
     amountCents: number
     externalId: string
     notes: string
 }
 
-type Invoice = {
+export type Invoice = {
     externalId: string;
     amountCents: number;
     originalAmountCents: number;
@@ -128,7 +128,7 @@ type Invoice = {
     installments: Installment[]
 }
 
-type Installment = {
+export type Installment = {
     amountCents: number;
     settlementDate: string;
 }
